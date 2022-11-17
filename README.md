@@ -36,3 +36,22 @@ npm run dev
 ```
 
 The API will run on `http://localhost:3000`.
+
+## Front-end
+
+### Running the project
+
+#### 1. Install NPM dependencies
+
+```sh
+cd frontend
+npm install
+```
+
+#### 2. Run the project
+
+```sh
+npm run dev
+```
+
+The project will run on `http://localhost:5173`.
