@@ -48,6 +48,20 @@ cd frontend
 npm install
 ```
 
+#### 2. Set-up variables
+
+Create .env file
+
+```sh
+cp .env-example .env
+```
+
+Set the URL where the API is running
+
+```sh
+VITE_API_URL=http://localhost:3000
+```
+
 #### 2. Run the project
 
 ```sh
