@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import Quote from "../interfaces/quote";
+import { formatCurrency, formatDateTime } from "../utils/format";
+import useQuotes from "../hooks/useQuotes";
 import Card from "./Card";
 
 const Table = styled.table`
@@ -29,6 +30,12 @@ const Table = styled.table`
   }
 `;
 
+const Message = styled.div`
+  font-size: 1.2rem;
+  text-align: center;
+  color: #666;
+`;
+
 const NoData = styled.div`
   padding: 16px 0px;
   font-size: 1.2rem;
@@ -37,26 +44,19 @@ const NoData = styled.div`
 `;
 
 type Props = {
-  list: Quote[];
   onSelectQuote: (id: number) => void;
 };
 
-function QuoteList({ list, onSelectQuote }: Props) {
-  const formatDateTime = (dateTime: string) => {
-    const splitted = dateTime.split("T");
-    const time = splitted[1].slice(0, 5);
-    const [year, month, day] = splitted[0].split("-");
-    const date = `${month}/${day}/${year}`;
-    return `${date} ${time}`;
-  };
-
-  const formatCurrency = (value: number) => {
-    return `$ ${value.toFixed(2)}`;
-  };
+function QuoteList({ onSelectQuote }: Props) {
+  const { data, error, loading } = useQuotes();
 
   return (
     <Card title="Quotes">
-      {list.length === 0 ? (
+      {error ? (
+        <Message>Error on fetching quotes. Try again.</Message>
+      ) : loading || !data ? (
+        <Message>Loading...</Message>
+      ) : data.length === 0 ? (
         <NoData>No quotes found.</NoData>
       ) : (
         <Table>
@@ -68,14 +68,11 @@ function QuoteList({ list, onSelectQuote }: Props) {
               <th>Destination</th>
               <th>Departure Date</th>
               <th>Return Date</th>
-              <th>Travelers</th>
-              <th>Transportation</th>
-              <th>Contact</th>
               <th>Price</th>
             </tr>
           </thead>
           <tbody>
-            {list.map((quote) => (
+            {data.map((quote) => (
               <tr key={quote.id} onClick={() => onSelectQuote(quote.id)}>
                 <td>{quote.id}</td>
                 <td>{quote.name}</td>
@@ -83,9 +80,6 @@ function QuoteList({ list, onSelectQuote }: Props) {
                 <td>{quote.destinationLocation.toUpperCase()}</td>
                 <td>{formatDateTime(quote.departureDate)}</td>
                 <td>{formatDateTime(quote.returnDate)}</td>
-                <td>{quote.travelers}</td>
-                <td>{quote.transportation}</td>
-                <td>{quote.contact}</td>
                 <td>{formatCurrency(quote.price)}</td>
               </tr>
             ))}
