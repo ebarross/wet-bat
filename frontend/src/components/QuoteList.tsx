@@ -37,6 +37,18 @@ type Props = {
 };
 
 function QuoteList({ list }: Props) {
+  const formatDateTime = (dateTime: string) => {
+    const splitted = dateTime.split("T");
+    const time = splitted[1].slice(0, 5);
+    const [year, month, day] = splitted[0].split("-");
+    const date = `${month}/${day}/${year}`;
+    return `${date} ${time}`;
+  };
+
+  const formatCurrency = (value: number) => {
+    return `$ ${value.toFixed(2)}`;
+  };
+
   return (
     <Card title="Quotes">
       {list.length === 0 ? (
@@ -64,12 +76,12 @@ function QuoteList({ list }: Props) {
                 <td>{quote.name}</td>
                 <td>{quote.departureLocation.toUpperCase()}</td>
                 <td>{quote.destinationLocation.toUpperCase()}</td>
-                <td>{quote.departureDate}</td>
-                <td>{quote.returnDate}</td>
+                <td>{formatDateTime(quote.departureDate)}</td>
+                <td>{formatDateTime(quote.returnDate)}</td>
                 <td>{quote.travelers}</td>
                 <td>{quote.transportation}</td>
                 <td>{quote.contact}</td>
-                <td>{quote.price}</td>
+                <td>{formatCurrency(quote.price)}</td>
               </tr>
             ))}
           </tbody>
