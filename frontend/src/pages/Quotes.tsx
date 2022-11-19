@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "wouter";
 import QuoteList from "../components/QuoteList";
 import useQuotes from "../hooks/useQuotes";
 
@@ -17,6 +18,11 @@ const Message = styled.div`
 
 function Quotes() {
   const { data, error, loading } = useQuotes();
+  const [_, navigate] = useLocation();
+
+  const seeQuoteDetails = (id: number) => {
+    navigate(`/quotes/${id}`);
+  };
 
   return (
     <Container>
@@ -25,7 +31,7 @@ function Quotes() {
       ) : error || !data ? (
         <Message>Error or fetching quotes. Try again.</Message>
       ) : (
-        <QuoteList list={data} />
+        <QuoteList list={data} onSelectQuote={seeQuoteDetails} />
       )}
     </Container>
   );

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link as WouterLink, useLocation } from "wouter";
 import { IoHome } from "react-icons/io5";
 import { MdAttachMoney, MdGroup, MdSupport } from "react-icons/md";
 import { FaListAlt, FaPaperPlane } from "react-icons/fa";
@@ -23,7 +24,7 @@ const Item = styled.li`
   width: 100%;
 `;
 
-const Link = styled.a<{ active?: boolean }>`
+const Link = styled(WouterLink)<{ active?: boolean }>`
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
@@ -60,6 +61,8 @@ const Rights = styled.div`
 `;
 
 function Sidebar() {
+  const [location] = useLocation();
+
   return (
     <Container>
       <nav>
@@ -70,7 +73,7 @@ function Sidebar() {
             </Link>
           </Item>
           <Item>
-            <Link href="/quotes" active>
+            <Link href="/quotes" active={location.startsWith("/quotes")}>
               <MdAttachMoney size={26} style={{ marginRight: "-8px" }} /> Quotes
             </Link>
           </Item>
@@ -84,7 +87,9 @@ function Sidebar() {
               <FaPaperPlane /> Tours
             </Link>
           </Item>
+
           <Divider />
+
           <Item>
             <Link href="/invoices">
               <BsFileEarmarkFill /> Invoices

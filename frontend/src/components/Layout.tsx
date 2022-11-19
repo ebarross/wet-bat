@@ -19,7 +19,7 @@ const Main = styled.main`
 `;
 
 type Props = {
-  children: React.ReactElement;
+  children: React.ReactNode;
 };
 
 function Layout({ children }: Props) {

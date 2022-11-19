@@ -4,14 +4,18 @@ import Card from "./Card";
 
 const Table = styled.table`
   width: 100%;
-  font-size: 0.7rem;
-  color: #444;
+  font-size: 0.8rem;
   border-collapse: collapse;
   border-spacing: 0px;
 
   th {
     text-transform: uppercase;
     text-align: left;
+    color: #666;
+  }
+
+  td {
+    color: #444;
   }
 
   th,
@@ -34,9 +38,10 @@ const NoData = styled.div`
 
 type Props = {
   list: Quote[];
+  onSelectQuote: (id: number) => void;
 };
 
-function QuoteList({ list }: Props) {
+function QuoteList({ list, onSelectQuote }: Props) {
   const formatDateTime = (dateTime: string) => {
     const splitted = dateTime.split("T");
     const time = splitted[1].slice(0, 5);
@@ -71,7 +76,7 @@ function QuoteList({ list }: Props) {
           </thead>
           <tbody>
             {list.map((quote) => (
-              <tr key={quote.id}>
+              <tr key={quote.id} onClick={() => onSelectQuote(quote.id)}>
                 <td>{quote.id}</td>
                 <td>{quote.name}</td>
                 <td>{quote.departureLocation.toUpperCase()}</td>

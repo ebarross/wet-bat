@@ -1,13 +1,13 @@
 import GlobalStyles from "./styles/global";
 import Layout from "./components/Layout";
-import Quotes from "./pages/Quotes";
+import Router from "./router";
 
 function App() {
   return (
     <>
       <GlobalStyles />
       <Layout>
-        <Quotes />
+        <Router />
       </Layout>
     </>
   );
