@@ -1,11 +1,43 @@
 import prisma from "../database/prisma";
 
 const getQuotes = () => {
-  return prisma.quote.findMany();
+  try {
+    return prisma.quote.findMany({
+      select: {
+        id: true,
+        name: true,
+        departureLocation: true,
+        destinationLocation: true,
+        departureDate: true,
+        returnDate: true,
+        price: true,
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
 };
 
 const getQuoteById = (id: number) => {
-  return prisma.quote.findFirst({ where: { id } });
+  try {
+    return prisma.quote.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        departureLocation: true,
+        destinationLocation: true,
+        departureDate: true,
+        returnDate: true,
+        travelers: true,
+        transportation: true,
+        contact: true,
+        price: true,
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
 };
 
 export default {
