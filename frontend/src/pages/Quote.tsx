@@ -1,4 +1,3 @@
-import Card from "../components/Card";
 import QuoteDetails from "../components/QuoteDetails";
 
 type Props = {
@@ -6,11 +5,7 @@ type Props = {
 };
 
 function Quote({ id }: Props) {
-  return (
-    <Card title="Quote Details">
-      <QuoteDetails id={id} />
-    </Card>
-  );
+  return <QuoteDetails id={id} />;
 }
 
 export default Quote;
