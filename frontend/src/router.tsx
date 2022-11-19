@@ -1,4 +1,5 @@
 import { Redirect, Route, Switch } from "wouter";
+import Quote from "./pages/Quote";
 import Quotes from "./pages/Quotes";
 
 function Router() {
@@ -8,7 +9,7 @@ function Router() {
         <Redirect to="/quotes" />
       </Route>
       <Route path="/quotes" component={Quotes} />
-      <Route path="/quotes/:id" component={() => <div>Quote Details</div>} />
+      <Route path="/quotes/:id">{(params) => <Quote id={params.id} />}</Route>
       <Route component={() => <div>Page not found.</div>} />
     </Switch>
   );
