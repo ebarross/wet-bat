@@ -15,7 +15,7 @@ function Quotes() {
 
   return (
     <Container>
-      <QuoteList onSelectQuote={seeQuoteDetails} />
+      <QuoteList onClickDetails={seeQuoteDetails} />
     </Container>
   );
 }

@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { formatCurrency, formatDateTime } from "../utils/format";
+import { AiFillEye } from "react-icons/ai";
+import { formatCurrency, formatDate } from "../utils/format";
 import useQuotes from "../hooks/useQuotes";
 import Card from "./Card";
+import Loading from "./Loading";
 
 const Table = styled.table`
   width: 100%;
@@ -21,11 +23,10 @@ const Table = styled.table`
 
   th,
   td {
-    padding: 8px 4px;
+    padding: 4px;
   }
 
   tbody tr:hover {
-    cursor: pointer;
     background-color: rgba(0, 0, 0, 0.07);
   }
 `;
@@ -43,11 +44,20 @@ const NoData = styled.div`
   color: #666;
 `;
 
+const Button = styled.button`
+  background-color: #5f6caf;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 8px 12px;
+  border-radius: 4px;
+`;
+
 type Props = {
-  onSelectQuote: (id: number) => void;
+  onClickDetails: (id: number) => void;
 };
 
-function QuoteList({ onSelectQuote }: Props) {
+function QuoteList({ onClickDetails }: Props) {
   const { data, error, loading } = useQuotes();
 
   return (
@@ -55,7 +65,7 @@ function QuoteList({ onSelectQuote }: Props) {
       {error ? (
         <Message>Error on fetching quotes. Try again.</Message>
       ) : loading || !data ? (
-        <Message>Loading...</Message>
+        <Loading />
       ) : data.length === 0 ? (
         <NoData>No quotes found.</NoData>
       ) : (
@@ -69,18 +79,24 @@ function QuoteList({ onSelectQuote }: Props) {
               <th>Departure Date</th>
               <th>Return Date</th>
               <th>Price</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {data.map((quote) => (
-              <tr key={quote.id} onClick={() => onSelectQuote(quote.id)}>
+              <tr key={quote.id}>
                 <td>{quote.id}</td>
                 <td>{quote.name}</td>
                 <td>{quote.departureLocation.toUpperCase()}</td>
                 <td>{quote.destinationLocation.toUpperCase()}</td>
-                <td>{formatDateTime(quote.departureDate)}</td>
-                <td>{formatDateTime(quote.returnDate)}</td>
+                <td>{formatDate(quote.departureDate)}</td>
+                <td>{formatDate(quote.returnDate)}</td>
                 <td>{formatCurrency(quote.price)}</td>
+                <td>
+                  <Button onClick={() => onClickDetails(quote.id)}>
+                    <AiFillEye size={22} color="#fff" />
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
