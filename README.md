@@ -26,16 +26,23 @@ Then, fill in the environment variables with your database credentials.
 #### 3. Create database schema
 
 ```sh
-npx prisma migrate dev
+npm run migrate:dev
 ```
 
-#### 4. Run the project
+#### 4. Seed database with initial data
+
+```sh
+npm run seed-db
+```
+
+#### 5. Run the project
 
 ```sh
 npm run dev
 ```
 
-The API will run on `http://localhost:3000`.
+The API will run on `http://localhost:PORT`.  
+Where `PORT` is the specified value on `.env` file or `3000` as default.
 
 ## Front-end
 

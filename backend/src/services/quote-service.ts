@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import prisma from "../database/prisma";
 
 const getQuotes = () => {
@@ -44,7 +45,12 @@ const getQuoteById = (id: number) => {
   }
 };
 
+const createQuote = (data: Prisma.QuoteCreateInput) => {
+  prisma.quote.create({ data });
+};
+
 export default {
   getQuotes,
   getQuoteById,
+  createQuote,
 };
