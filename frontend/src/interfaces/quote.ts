@@ -1,3 +1,7 @@
+interface Transportation {
+  name: string;
+}
+
 export default interface Quote {
   id: number;
   name: string;
@@ -6,7 +10,7 @@ export default interface Quote {
   departureDate: string;
   returnDate: string;
   travelers: number;
-  transportation: string;
+  transportation: Transportation;
   contact: string;
   price: number;
 }

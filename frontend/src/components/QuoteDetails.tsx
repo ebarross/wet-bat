@@ -73,7 +73,7 @@ function QuoteDetails({ id }: Props) {
           <Flex>
             <div>
               <Bold>Transportation:</Bold>
-              <div>{data.transportation}</div>
+              <div>{data.transportation.name}</div>
             </div>
             <div>
               <Bold>Travellers:</Bold>

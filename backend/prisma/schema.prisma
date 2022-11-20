@@ -10,17 +10,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Transportation {
+  id     Int     @id @default(autoincrement())
+  name   String
+  quotes Quote[]
+}
+
 model Quote {
-  id                  Int      @id @default(autoincrement())
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  id                  Int            @id @default(autoincrement())
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
   name                String
   departureLocation   String
   destinationLocation String
   departureDate       DateTime
   returnDate          DateTime
   travelers           Int
-  transportation      String
+  transportation      Transportation? @relation(fields: [transportationId], references: [id])
+  transportationId    Int
   contact             String
   price               Float
 }

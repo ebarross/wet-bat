@@ -30,7 +30,11 @@ const getQuoteById = (id: number) => {
         departureDate: true,
         returnDate: true,
         travelers: true,
-        transportation: true,
+        transportation: {
+          select: {
+            name: true,
+          },
+        },
         contact: true,
         price: true,
       },
