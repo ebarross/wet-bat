@@ -111,14 +111,22 @@ With the principle of separation of concern in mind, it was used a simplified la
 
 ### Running the project
 
-1. Install NPM dependencies
+Inside the project directory, follow the steps below.
+
+1. Install node version (`16.14.2`)
+
+```sh
+nvm use
+```
+
+2. Install NPM dependencies
 
 ```sh
 cd backend
 npm install
 ```
 
-2. Create .env file
+3. Create .env file
 
 ```sh
 cp .env-example .env
@@ -126,19 +134,19 @@ cp .env-example .env
 
 Then, fill in the environment variables with your database credentials.
 
-3. Create database schema
+4. Create database schema
 
 ```sh
 npm run migrate:dev
 ```
 
-4. Seed database with initial data
+5. Seed database with initial data
 
 ```sh
 npm run seed-db
 ```
 
-5. Run the project
+6. Run the project
 
 ```sh
 npm run dev
@@ -171,6 +179,9 @@ On the client side, the app was also structured in such a way that each layer ha
 - `/components`: stateful and stateless components which can be reusable/composable.
 
 ### Running the project
+
+Inside the project directory, follow the steps below.  
+Ensure you have the right node version installed ([described here](#running-the-project)).
 
 1. Install NPM dependencies
 
