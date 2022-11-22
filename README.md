@@ -35,14 +35,14 @@ https://wet-bat-production.up.railway.app/
 
 ### Data modeling
 
-- `Quote`: a model representing the main feature, containing all the relevant information for the prototype.
-- `Transportation`: a model for the available transportations on travels.
+- `Quote`: model representing the main feature, containing all the relevant information for the prototype.
+- `Transportation`: model representing the transports available in a travel.
 
 ![Data modeling](data-modeling.jpg)
 
 ### Architecture
 
-With the principle of separate of concern in mind, it was used a simplified layered architecture, dividing the app in two main layers:
+With the principle of separation of concern in mind, it was used a simplified layered architecture, where the app is divided into two main layers:
 
 - **Controller**: contains all the logic for handling the HTTP requests and responses on API routes.
 - **Service/Model**: this single layer has the business logic and is responsible for integrating the routes with the data source.
@@ -145,11 +145,11 @@ npm run dev
 ```
 
 The API will run on `http://localhost:PORT`.  
-Where `PORT` is the specified value on `.env` file or `3000` as default.
+Where `PORT` is the specified value on `.env` file or `3000` by default.
 
 ## Front-end
 
-The front-end app consists on a Single-Page Application (SPA) that consumes the API to provide a UI for visualizing the quotes on a dashboard. It was built with:
+The front-end app consists of a Single-Page Application (SPA) that consumes the API to provide a UI for visualizing the quotes on a dashboard. It was built with:
 
 - React.js
 - TypeScript
@@ -166,7 +166,7 @@ https://wet-bat.vercel.app
 On the client side, the app was also structured in such a way that each layer handles a separate concern.
 
 - `/infra/http`: contains the logic for communication with the server, fetching and handling the HTTP requests and responses.
-- `/hooks`: the two existing hooks (`useQuotes` and `useQuote`) connects with `http` to keep the remote state and provide them to the components.
+- `/hooks`: the two existing hooks (`useQuotes` and `useQuote`) connect with `http` to keep the remote state and provide them to the components.
 - `/pages`: container components representing a page, where the components are joined together to mount the UI.
 - `/components`: stateful and stateless components which can be reusable/composable.
 
