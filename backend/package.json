@@ -5,7 +5,12 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon src/server.ts",
+    "build": "npm run migrate:deploy && tsc",
+    "start": "node dist/index.js",
     "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
+    "migrate:status": "prisma migrate status",
+    "generate": "prisma generate",
     "seed-db": "ts-node src/database/seed.ts"
   },
   "keywords": [],
