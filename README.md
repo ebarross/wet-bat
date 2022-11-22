@@ -10,6 +10,7 @@
     - [Running the project](#running-the-project)
   - [Front-end](#front-end)
     - [Demo](#demo-1)
+    - [Architecture \& structure](#architecture--structure)
     - [Running the project](#running-the-project-1)
 
 ## About the project
@@ -159,6 +160,15 @@ The front-end app consists on a Single-Page Application (SPA) that consumes the 
 
 The app was deployed on Vercel, and can be accessed at:  
 https://wet-bat.vercel.app
+
+### Architecture & structure
+
+On the client side, the app was also structured in such a way that each layer handles a separate concern.
+
+- `/infra/http`: contains the logic for communication with the server, fetching and handling the HTTP requests and responses.
+- `/hooks`: the two existing hooks (`useQuotes` and `useQuote`) connects with `http` to keep the remote state and provide them to the components.
+- `/pages`: container components representing a page, where the components are joined together to mount the UI.
+- `/components`: stateful and stateless components which can be reusable/composable.
 
 ### Running the project
 
