@@ -1,5 +1,17 @@
 # Wet Bat Dashboard
 
+- [Wet Bat Dashboard](#wet-bat-dashboard)
+  - [About the project](#about-the-project)
+  - [Back-end](#back-end)
+    - [Demo](#demo)
+    - [Data modeling](#data-modeling)
+    - [Architecture](#architecture)
+    - [API Routes](#api-routes)
+    - [Running the project](#running-the-project)
+  - [Front-end](#front-end)
+    - [Demo](#demo-1)
+    - [Running the project](#running-the-project-1)
+
 ## About the project
 
 This is a prototype of a dashboard application for Wet Bat Travel.  
@@ -15,21 +27,26 @@ The back-end app is a REST API responsible for processing the data stored in a r
 - Prisma (ORM)
 - Postgresql (Database)
 
-**Data modeling**
+### Demo
+
+Both API and database were deployed on Railway, and can be accessed at:  
+https://wet-bat-production.up.railway.app/
+
+### Data modeling
 
 - `Quote`: a model representing the main feature, containing all the relevant information for the prototype.
 - `Transportation`: a model for the available transportations on travels.
 
 ![Data modeling](data-modeling.jpg)
 
-**Architecture**
+### Architecture
 
 With the principle of separate of concern in mind, it was used a simplified layered architecture, dividing the app in two main layers:
 
 - **Controller**: contains all the logic for handling the HTTP requests and responses on API routes.
 - **Service/Model**: this single layer has the business logic and is responsible for integrating the routes with the data source.
 
-**API Routes**
+### API Routes
 
 1. Show all existing quotes  
    Endpoint: `GET /quotes`
@@ -93,14 +110,14 @@ With the principle of separate of concern in mind, it was used a simplified laye
 
 ### Running the project
 
-#### 1. Install NPM dependencies
+1. Install NPM dependencies
 
 ```sh
 cd backend
 npm install
 ```
 
-#### 2. Create .env file
+2. Create .env file
 
 ```sh
 cp .env-example .env
@@ -108,19 +125,19 @@ cp .env-example .env
 
 Then, fill in the environment variables with your database credentials.
 
-#### 3. Create database schema
+3. Create database schema
 
 ```sh
 npm run migrate:dev
 ```
 
-#### 4. Seed database with initial data
+4. Seed database with initial data
 
 ```sh
 npm run seed-db
 ```
 
-#### 5. Run the project
+5. Run the project
 
 ```sh
 npm run dev
@@ -131,16 +148,28 @@ Where `PORT` is the specified value on `.env` file or `3000` as default.
 
 ## Front-end
 
+The front-end app consists on a Single-Page Application (SPA) that consumes the API to provide a UI for visualizing the quotes on a dashboard. It was built with:
+
+- React.js
+- TypeScript
+- Vite
+- Styled Components
+
+### Demo
+
+The app was deployed on Vercel, and can be accessed at:  
+https://wet-bat.vercel.app
+
 ### Running the project
 
-#### 1. Install NPM dependencies
+1. Install NPM dependencies
 
 ```sh
 cd frontend
 npm install
 ```
 
-#### 2. Set-up variables
+2. Set-up variables
 
 Create .env file
 
@@ -154,7 +183,7 @@ Set the URL where the API is running
 VITE_API_URL=http://localhost:3000
 ```
 
-#### 2. Run the project
+3. Run the project
 
 ```sh
 npm run dev
