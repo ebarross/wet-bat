@@ -113,7 +113,7 @@ With the principle of separation of concern in mind, it was used a simplified la
 
 Inside the project directory, follow the steps below.
 
-1. Install node version (`16.14.2`)
+1. Install node version (`16.14.2`) with `nvm`
 
 ```sh
 nvm use
